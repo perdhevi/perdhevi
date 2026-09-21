@@ -1,23 +1,20 @@
-Hi, I'm Raditya Perdhevi 👋
+# Hi, I'm Raditya Perdhevi 👋
 
-Software Engineer · Cloud & Solutions Architecture · AI/LLM Engineering
+**Software Engineer · Cloud & Backend Systems · Applied AI / LLM Systems**
 
-I'm a software engineer with experience across backend systems, cloud infrastructure, mobile development, and game development.
+I'm a software engineer with experience across backend systems, cloud infrastructure, mobile development, and game development — including 9,000+ verified hours of freelance engineering on Upwork.
 
-These days, I'm particularly interested in what happens around the LLM — agent architecture, orchestration, memory, context management, evaluation, tools, and the infrastructure required to turn AI experiments into reliable software.
+These days, I'm particularly interested in what happens *around* the LLM — agent architecture, orchestration, memory, context management, evaluation, tools, and the infrastructure required to turn AI experiments into reliable software.
 
 ---
 
-🔭 What I'm working on
-
-AI Agents & LLM Systems
+## 🔭 What I'm working on
 
 I'm experimenting with the engineering patterns behind production AI systems:
 
 - Agent orchestration and ReAct loops
 - Multi-agent systems
-- RAG and knowledge retrieval
-- Episodic and semantic memory
+- Retrieval and episodic memory
 - Context and token-budget management
 - Tool integration
 - LLM evaluation and quality gates
@@ -27,160 +24,82 @@ I prefer building these systems from first principles where possible, so I can u
 
 ---
 
-🧪 Featured Projects
+## 🧪 Featured Projects
 
-🤖 Support Harness
+### 🤖 [Support Harness](https://github.com/perdhevi/Support-Harness)
 
-A progressively-built AI agent harness exploring the components required beyond a basic LLM call.
+A progressively-built AI agent harness exploring what's required beyond a basic LLM call. Each stage adds exactly one harness-level concern:
 
-The project evolves through several stages, adding:
+`ReAct loop + KB tools` → `Episodic memory` → `Token budget` → `LLM-as-judge`
 
-"ReAct Agent" → "Tools" → "Memory" → "Context Management" → "Evaluation"
-
-Some of the areas explored:
-
-- ReAct-style agent loops
-- ChromaDB episodic memory
-- Token-budget management
-- Tool-output trimming
-- LLM-as-judge quality gates
-- Local inference with Ollama
+- ReAct-style agent loop driven by `finish_reason`
+- ChromaDB episodic memory with a relevance threshold
+- Token-budget tracking and tool-output trimming
+- LLM-as-judge quality gate with bounded retries
+- Fully local inference with Ollama — no API keys
 
 The goal isn't just to build an agent, but to understand the engineering decisions required to make one reliable, observable, and maintainable.
 
----
+### 🎲 [D&D Multi-Agent Simulator](https://github.com/perdhevi/dnd-LangGraph)
 
-🎲 D&D Multi-Agent Simulator
+An experiment in autonomous multi-agent interaction: four agents (a Dungeon Master and three party members) play out a full combat encounter with no human input, while the system logs a structured event stream that can be inspected and replayed.
 
-An experiment in autonomous multi-agent interaction using LangGraph and local LLMs.
+`Python` · `LangGraph` · `Ollama` · `Qwen` · `React` · `Three.js`
 
-Multiple AI-controlled characters interact inside a simulated environment while the system records structured events that can later be inspected and replayed.
-
-Built with:
-
-"Python" · "LangGraph" · "Ollama" · "Qwen" · "React" · "Three.js"
-
-The project explores:
-
-- Multi-agent orchestration
-- Autonomous agent behavior
+- Multi-agent orchestration with LangGraph
 - Structured LLM output
-- Event-driven simulation
-- Local inference
-- Visualization and replay
+- JSONL event logging
+- React dashboard and Three.js animated replay
+- Fully local inference
 
 ---
 
-🚀 Shipped Software
+## 🚀 Shipped Software
 
-🎮 Strike Shooter
+### 🎮 Strike Shooter
 
-A space shooter developed with Unity and C#, published for both iOS and Android.
+A space shooter built with Unity and C#, published on iOS and Android.
 
-Building and shipping the game involved much more than gameplay code — including mobile performance, UI, progression systems, packaging, release management, and maintaining production builds across two mobile ecosystems.
+Shipping it involved much more than gameplay code — mobile performance, UI, progression systems, packaging, release management, and maintaining production builds across two mobile ecosystems.
 
-Available on the Apple App Store and Google Play.
-
----
-
-🛠️ Engineering
-
-I've worked across several layers of the software stack.
-
-Languages
-
-"Python" · "JavaScript / TypeScript" · "Java" · "Swift" · "C#"
-
-Backend & Data
-
-"Node.js" · "REST APIs" · "PostgreSQL" · "Redis"
-
-Cloud & Infrastructure
-
-"AWS" · "Docker" · "Linux" · "CI/CD"
-
-AI / LLM
-
-"LangGraph" · "Ollama" · "RAG" · "Vector Databases" · "Agent Systems"
-
-Frontend & Mobile
-
-"React" · "iOS" · "Unity"
+[App Store](LINK) · [Google Play](LINK)
 
 ---
 
-☁️ Cloud & Architecture
+## 🛠️ Engineering
 
-I enjoy designing systems as much as implementing them.
+**Languages:** `C++` · `Java` · `C#` · `Swift` · `Python` · `JavaScript / TypeScript`
 
-My interests include:
+**Backend & Cloud:** `Node.js` · `REST APIs` · `AWS Lambda` · `Docker` · `Linux`
 
-- Cloud-native architecture
-- Serverless and containerized workloads
-- API and backend architecture
-- Infrastructure automation
-- Self-hosted infrastructure
-- Distributed systems
-- AI application architecture
+**AI / LLM:** `LangGraph` · `Ollama` · `ChromaDB` · `Agent Systems`
 
-I also maintain professional cloud certifications.
-
-→ View my verified credentials on Credly
+**Frontend & Mobile:** `React` · `iOS` · `Unity`
 
 ---
 
-🔬 The Lab
+## ☁️ Cloud & Architecture
 
-Not everything needs to become a product.
+I enjoy designing systems as much as implementing them — cloud-native and serverless architecture, API and backend design, infrastructure automation, self-hosted infrastructure, and AI application architecture.
 
-I regularly build small experiments to understand technologies at a deeper level.
-
-Current areas I'm exploring include:
-
-AI Agents
-Agent harnesses, memory, evaluation, orchestration, and local inference.
-
-Self-Hosted Infrastructure
-Containers, virtualization, local AI infrastructure, and private cloud environments.
-
-Robotics & Electronics
-Arduino, embedded systems, sensors, motors, and eventually autonomous robotics.
-
-Game Systems
-Simulation, procedural systems, AI behavior, and gameplay architecture.
+→ [Verified credentials on Credly](CREDLY_LINK)
 
 ---
 
-✍️ Engineering Notes
+## 🔬 The Lab
 
-I'm documenting what I learn while building systems around:
+Not everything needs to become a product. I build small experiments to understand technologies at a deeper level:
 
-- AI agent architecture
-- LLM engineering
-- Cloud infrastructure
-- Software architecture
-- Local AI
-- Robotics and electronics
-
-🌐 perdhevi.com
+- **AI agents** — harnesses, memory, evaluation, orchestration, local inference
+- **Self-hosted infrastructure** — containers, virtualization, local AI infrastructure
+- **Game systems** — simulation, procedural systems, AI behavior
 
 ---
 
-🔗 Find me
+## 🔗 Find me
 
-Portfolio & Engineering Notes
-perdhevi.com
+🌐 [perdhevi.com](https://www.perdhevi.com) — portfolio & engineering notes
+🏅 [Credly](CREDLY_LINK) — verified certifications
+✍️ [X — build logs](https://x.com/rp_do1by1)
 
-Verified Certifications
-Credly
-
-Open Source & Experiments
-You're already here. :)
-
----
-
-«Full-time problem solver, part-time human.»
-<!---
-perdhevi/perdhevi is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+> *Full-time problem solver, part-time human.*
