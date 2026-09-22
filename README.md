@@ -62,7 +62,15 @@ A space shooter built with Unity and C#, published on iOS and Android.
 
 Shipping it involved much more than gameplay code — mobile performance, UI, progression systems, packaging, release management, and maintaining production builds across two mobile ecosystems.
 
-[App Store](LINK) · [Google Play](LINK)
+[App Store](https://apps.apple.com/id/app/strike-shooter/id6736962627?l=id) · [Google Play](https://play.google.com/store/apps/details?id=com.perdhevi.shooter1&pli=1)
+
+🧮 Calc Quick
+
+A fast-paced mathematics puzzle game for iOS.
+
+[App Store](https://apps.apple.com/id/app/calc-quick/id1558186528?l=id)
+
+These projects are part of my ongoing interest in building software that goes beyond prototypes and reaches actual users.
 
 ---
 
@@ -98,8 +106,9 @@ Not everything needs to become a product. I build small experiments to understan
 
 ## 🔗 Find me
 
-🌐 [perdhevi.com](https://www.perdhevi.com) — portfolio & engineering notes
-🏅 [Credly](CREDLY_LINK) — verified certifications
-✍️ [X — build logs](https://x.com/rp_do1by1)
+- 🌐 [perdhevi.com](https://www.perdhevi.com) — portfolio & engineering notes
+- 🏅 [Credly](https://www.credly.com/users/raditya-perdhevi/badges/credly) — verified certifications
+- ✍️ [X Personal](https://x.com/perdhevi)
+- ✍️ [X — build logs](https://x.com/rp_do1by1)
 
 > *Full-time problem solver, part-time human.*
