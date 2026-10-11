@@ -16,7 +16,7 @@ I'm experimenting with the engineering patterns behind production AI systems:
 - Multi-agent systems
 - Retrieval and episodic memory
 - Context and token-budget management
-- Tool integration
+- Tool integration and MCP servers
 - LLM evaluation and quality gates
 - Local LLM inference
 
@@ -25,6 +25,20 @@ I prefer building these systems from first principles where possible, so I can u
 ---
 
 ## 🧪 Featured Projects
+
+### 🗂️ [vault-mcp](https://github.com/perdhevi/obsidian-mcp)
+
+An MCP server that lets AI clients search and read an Obsidian vault, and save new notes into an inbox folder. Runs as a single local Node daemon over Streamable HTTP, so Claude Code, Claude Desktop and Hermes Agent share one index.
+
+`Node.js` · `MCP` · `LanceDB` · `Ollama` · `nomic-embed-text`
+
+- Notes split by heading and embedded locally — no API keys
+- LanceDB for vectors; the wikilink graph kept in memory
+- File watcher re-indexes on edit, with a startup reconciliation pass for changes made while the server was off
+- All index writes go through one queue, so the watcher and tools never conflict
+- Localhost-only binding, client path validation, create-only writes into the inbox
+
+Built by hand, step by step, with a full [build guide](https://github.com/perdhevi/obsidian-mcp/blob/main/docs/BUILD_GUIDE.md) so others can follow along.
 
 ### 🤖 [Support Harness](https://github.com/perdhevi/Support-Harness)
 
@@ -64,7 +78,7 @@ Shipping it involved much more than gameplay code — mobile performance, UI, pr
 
 [App Store](https://apps.apple.com/id/app/strike-shooter/id6736962627?l=id) · [Google Play](https://play.google.com/store/apps/details?id=com.perdhevi.shooter1&pli=1)
 
-🧮 Calc Quick
+### 🧮 Calc Quick
 
 A fast-paced mathematics puzzle game for iOS.
 
@@ -76,11 +90,11 @@ These projects are part of my ongoing interest in building software that goes be
 
 ## 🛠️ Engineering
 
-**Languages:** `C++` · `Java` · `C#` · `Swift` · `Python` · `JavaScript / TypeScript`
+**Languages:** `C++` · `C#` · `Swift` · `Python` · `JavaScript / TypeScript`
 
-**Backend & Cloud:** `Node.js` · `REST APIs` · `AWS Lambda` · `Docker` · `Linux`
+**Backend & Cloud:** `Node.js` · `REST APIs` · `AWS Lambda` · `AWS ECS` · `Docker` · `Linux`
 
-**AI / LLM:** `LangGraph` · `Ollama` · `ChromaDB` · `Agent Systems`
+**AI / LLM:** `LangGraph` · `Ollama` · `MCP` · `LanceDB` · `ChromaDB` · `Agent Systems`
 
 **Frontend & Mobile:** `React` · `iOS` · `Unity`
 
@@ -90,7 +104,7 @@ These projects are part of my ongoing interest in building software that goes be
 
 I enjoy designing systems as much as implementing them — cloud-native and serverless architecture, API and backend design, infrastructure automation, self-hosted infrastructure, and AI application architecture.
 
-→ [Verified credentials on Credly](CREDLY_LINK)
+→ [Verified credentials on Credly](https://www.credly.com/users/raditya-perdhevi)
 
 ---
 
@@ -98,7 +112,7 @@ I enjoy designing systems as much as implementing them — cloud-native and serv
 
 Not everything needs to become a product. I build small experiments to understand technologies at a deeper level:
 
-- **AI agents** — harnesses, memory, evaluation, orchestration, local inference
+- **[harness-loop-graph](https://github.com/perdhevi/harness-loop-graph)** *(in progress)* — a harness that takes a plain-language request and builds the application it asks for: plans, writes, runs, fixes and verifies it. Standard-library Python, built in stages like Support Harness.
 - **Self-hosted infrastructure** — containers, virtualization, local AI infrastructure
 - **Game systems** — simulation, procedural systems, AI behavior
 
@@ -107,8 +121,7 @@ Not everything needs to become a product. I build small experiments to understan
 ## 🔗 Find me
 
 - 🌐 [perdhevi.com](https://www.perdhevi.com) — portfolio & engineering notes
-- 🏅 [Credly](https://www.credly.com/users/raditya-perdhevi/badges/credly) — verified certifications
-- ✍️ [X Personal](https://x.com/perdhevi)
-- ✍️ [X — build logs](https://x.com/rp_do1by1)
+- 🏅 [Credly](https://www.credly.com/users/raditya-perdhevi) — verified certifications
+- ✍️ [X — @perdhevi](https://x.com/perdhevi)
 
 > *Full-time problem solver, part-time human.*
