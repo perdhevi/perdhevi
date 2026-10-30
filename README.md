@@ -2,9 +2,9 @@
 
 **Software Engineer · Cloud & Backend Systems · Applied AI / LLM Systems**
 
-I'm a software engineer with experience across backend systems, cloud infrastructure, mobile development, and game development — including 9,000+ verified hours of freelance engineering on Upwork.
+I'm a software engineer with experience across backend systems, cloud infrastructure, mobile development, and game development — with a verified track record of 9,000+ hours and $100K+ earned on Upwork.
 
-These days, I'm particularly interested in what happens *around* the LLM — agent architecture, orchestration, memory, context management, evaluation, tools, and the infrastructure required to turn AI experiments into reliable software.
+These days, I'm particularly interested in what happens *around* the LLM — agent architecture, orchestration, retrieval, memory, context management, evaluation, tools, and the infrastructure required to turn AI experiments into reliable software.
 
 ---
 
@@ -12,59 +12,76 @@ These days, I'm particularly interested in what happens *around* the LLM — age
 
 I'm experimenting with the engineering patterns behind production AI systems:
 
-- Agent orchestration and ReAct loops
-- Multi-agent systems
-- Retrieval and episodic memory
+- Agent harnesses, ReAct loops and multi-agent orchestration
+- Retrieval (RAG), vector search and episodic memory
+- Authorization and tenant isolation for AI tools
 - Context and token-budget management
 - Tool integration and MCP servers
-- LLM evaluation and quality gates
+- LLM evaluation, quality gates and benchmarking
 - Local LLM inference
 
-I prefer building these systems from first principles where possible, so I can understand why they work — and where they fail.
+I prefer building these systems from first principles where possible, so I can understand why they work — and where they fail. Most projects below are built in stages, one concern per step, so the reasoning stays readable.
 
 ---
 
 ## 🧪 Featured Projects
 
-### 🗂️ [vault-mcp](https://github.com/perdhevi/obsidian-mcp)
+### 📄 [pdf-mcp](https://github.com/perdhevi/pdf-mcp)
 
-An MCP server that lets AI clients search and read an Obsidian vault, and save new notes into an inbox folder. Runs as a single local Node daemon over Streamable HTTP, so Claude Code, Claude Desktop and Hermes Agent share one index.
+An MCP server for per-customer document management and RAG over PDFs — text, scanned and chart-heavy — that answers with citations linking back to the original page.
+
+`Python` · `MCP` · `Qdrant` · `PyMuPDF` · `Tesseract` · `Ollama` · `qwen3-vl` · `Docker`
+
+- Text extraction, OCR and a vision model for charts and figures, all on ingest
+- Each customer gets its own Qdrant collection, so answers never mix customers
+- Answers cite the source and deep-link to the exact PDF page
+- Each model role (embeddings, vision, answers) picks its own provider — Ollama or any OpenAI-compatible API
+- One `docker compose up` with sample data, plus a "verify it works" checklist and CI tests
+
+### 🔐 [permission-aware-mcp](https://github.com/perdhevi/permission-aware-mcp)
+
+An MCP server for permission-aware retrieval. **The model can't choose who it is acting for:** caller identity comes only from a verified bearer token, and the database decides tenant membership, roles and document access.
+
+`Go` · `MCP` · `PostgreSQL` · `pgvector` · `OAuth / OIDC` · `Keycloak` · `Docker`
+
+- Tenant isolation and per-document permissions applied *before* retrieval, so search only ever sees what the caller may read
+- Offline signed-token demo by default; optional Keycloak login (authorization code + PKCE) with the same behavior
+- Every access is written to an audit log
+- A prompt-injection demo shows that hostile instructions inside retrieved documents can't unlock confidential ones
+
+Built in six documented phases, each with a change record and reproducible validation steps.
+
+### 🗂️ [obsidian-mcp](https://github.com/perdhevi/obsidian-mcp)
+
+An MCP server that lets AI clients search and read an Obsidian vault and save new notes into an inbox. Runs as one local Node daemon over Streamable HTTP, so Claude Code, Claude Desktop and Hermes Agent share one index.
 
 `Node.js` · `MCP` · `LanceDB` · `Ollama` · `nomic-embed-text`
 
-- Notes split by heading and embedded locally — no API keys
-- LanceDB for vectors; the wikilink graph kept in memory
-- File watcher re-indexes on edit, with a startup reconciliation pass for changes made while the server was off
-- All index writes go through one queue, so the watcher and tools never conflict
-- Localhost-only binding, client path validation, create-only writes into the inbox
+- Notes split by heading and embedded locally; wikilink graph kept in memory
+- File watcher re-indexes on edit, with a startup pass for changes made while it was off
+- Single write queue, localhost-only binding, create-only writes
 
-Built by hand, step by step, with a full [build guide](https://github.com/perdhevi/obsidian-mcp/blob/main/docs/BUILD_GUIDE.md) so others can follow along.
+Built by hand with a full [build guide](https://github.com/perdhevi/obsidian-mcp/blob/main/docs/BUILD_GUIDE.md) so others can follow along.
 
-### 🤖 [Support Harness](https://github.com/perdhevi/Support-Harness)
+---
 
-A progressively-built AI agent harness exploring what's required beyond a basic LLM call. Each stage adds exactly one harness-level concern:
+## 🏋️ Full-stack: Latihan *(in progress)*
 
-`ReAct loop + KB tools` → `Episodic memory` → `Token budget` → `LLM-as-judge`
+An open-core fitness platform — workouts, reusable training plans, planned-versus-done comparison and body measurements — built as three clients of one API contract.
 
-- ReAct-style agent loop driven by `finish_reason`
-- ChromaDB episodic memory with a relevance threshold
-- Token-budget tracking and tool-output trimming
-- LLM-as-judge quality gate with bounded retries
-- Fully local inference with Ollama — no API keys
+| Repo | What it is | Stack |
+| --- | --- | --- |
+| [latihanAPI](https://github.com/perdhevi/latihanAPI) | REST backend, modular monolith | `Go` · `PostgreSQL` · `OpenAPI` · `Docker` |
+| [latihan-web](https://github.com/perdhevi/latihan-web) | Browser client, online-only | `TypeScript` · `React` · `TanStack Query` · `Vite` · `Playwright` |
+| [latihan_mobile](https://github.com/perdhevi/latihan_mobile) | Offline-first iOS/Android app | `Dart` · `Flutter` · `Drift` |
 
-The goal isn't just to build an agent, but to understand the engineering decisions required to make one reliable, observable, and maintainable.
+- Pluggable auth — built-in accounts, Firebase, Amazon Cognito or any OIDC issuer — and the record owner always comes from the verified token, never the request
+- Idempotency keys and ETag / `If-Match` for safe retries and concurrent edits
+- Users can export or erase all their data; changes are audited without copying values
+- Rate limiting, Prometheus metrics, OpenTelemetry traces and load tests
+- The web client's types are generated from the API's OpenAPI spec, and CI fails if they drift
 
-### 🎲 [D&D Multi-Agent Simulator](https://github.com/perdhevi/dnd-LangGraph)
-
-An experiment in autonomous multi-agent interaction: four agents (a Dungeon Master and three party members) play out a full combat encounter with no human input, while the system logs a structured event stream that can be inspected and replayed.
-
-`Python` · `LangGraph` · `Ollama` · `Qwen` · `React` · `Three.js`
-
-- Multi-agent orchestration with LangGraph
-- Structured LLM output
-- JSONL event logging
-- React dashboard and Three.js animated replay
-- Fully local inference
+The web client is documented as an 11-part build log, one question per part.
 
 ---
 
@@ -84,27 +101,17 @@ A fast-paced mathematics puzzle game for iOS.
 
 [App Store](https://apps.apple.com/id/app/calc-quick/id1558186528?l=id)
 
-These projects are part of my ongoing interest in building software that goes beyond prototypes and reaches actual users.
-
 ---
 
 ## 🛠️ Engineering
 
-**Languages:** `C++` · `C#` · `Swift` · `Python` · `JavaScript / TypeScript`
+**Languages:** `C++` · `C#` · `Swift` · `Python` · `JavaScript / TypeScript` · `Go` · `Dart`
 
-**Backend & Cloud:** `Node.js` · `REST APIs` · `AWS Lambda` · `AWS ECS` · `Docker` · `Linux`
+**Backend & Cloud:** `Node.js` · `REST APIs` · `PostgreSQL` · `AWS Lambda` · `AWS ECS` · `Docker` · `Linux`
 
-**AI / LLM:** `LangGraph` · `Ollama` · `MCP` · `LanceDB` · `ChromaDB` · `Agent Systems`
+**AI / LLM:** `MCP` · `LangGraph` · `Ollama` · `Qdrant` · `pgvector` · `LanceDB` · `ChromaDB` · `Agent Harnesses` · `RAG`
 
-**Frontend & Mobile:** `React` · `iOS` · `Unity`
-
----
-
-## ☁️ Cloud & Architecture
-
-I enjoy designing systems as much as implementing them — cloud-native and serverless architecture, API and backend design, infrastructure automation, self-hosted infrastructure, and AI application architecture.
-
-→ [Verified credentials on Credly](https://www.credly.com/users/raditya-perdhevi)
+**Frontend & Mobile:** `React` · `Flutter` · `iOS` · `Unity`
 
 ---
 
@@ -112,7 +119,9 @@ I enjoy designing systems as much as implementing them — cloud-native and serv
 
 Not everything needs to become a product. I build small experiments to understand technologies at a deeper level:
 
-- **[harness-loop-graph](https://github.com/perdhevi/harness-loop-graph)** *(in progress)* — a harness that takes a plain-language request and builds the application it asks for: plans, writes, runs, fixes and verifies it. Standard-library Python, built in stages like Support Harness.
+- **[harness-loop-graph](https://github.com/perdhevi/harness-loop-graph)** *(being reworked)* — an agent harness that turns a plain-language request into a planned, built and test-checked application, with benchmark replay against a saved baseline
+- **[Support Harness](https://github.com/perdhevi/Support-Harness)** — the four-stage teaching harness that harness-loop-graph grew out of: ReAct loop → ChromaDB episodic memory → token budget → LLM-as-judge quality gate, fully local on Ollama
+- **[D&D Multi-Agent Simulator](https://github.com/perdhevi/dnd-LangGraph)** — four LangGraph agents (a Dungeon Master and three players) run a full combat encounter with no human input, with a JSONL event log, React dashboard and Three.js replay
 - **Self-hosted infrastructure** — containers, virtualization, local AI infrastructure
 - **Game systems** — simulation, procedural systems, AI behavior
 
